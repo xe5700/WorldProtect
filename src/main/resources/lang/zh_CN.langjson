@@ -1,0 +1,26 @@
+﻿{
+	"use_failed":        "&a[&1WorldProtect&a]&e在世界&1${replace2}&e里你没有使用&a[&c${replace1}&a]&e的权限,请咨询管理员.",
+	"break_failed":      "&a[&1WorldProtect&a]&e在世界&1${replace2}&e里你没有破坏&a[&c${replace1}&a]&e的权限,请咨询管理员.",
+	"build_failed":      "&a[&1WorldProtect&a]&e在世界&1${replace2}&e里你没有建造的权限,请咨询管理员.",
+	"command_per":       "&a[&1WorldProtect&a]&e你没有指令权限.",
+	"reload_ok":         "&a[&1WorldProtect&a]&e重载成功!",
+	"command_none":      "&a[&1WorldProtect&a]&e请使用 &2/WorldProtect help &e去查看帮助.",
+	"command_help_firstline":     "&a*****************&c[&1世界保护系统]****************",
+	"command_help_addworld":      "&a****&e添加一个世界到保护列表&a****",
+	"command_help_additem":       "&a****&e在世界内\n添加一个物品到物品保护列表&a****",
+	"command_help_adduseblock":   "&a****&e在世界内\n添加一个方块到方块使用保护列表&a****",
+
+	"command_help_build":         "&a****&e禁用/启用 在世界内的建筑&a****",
+	"command_help_damage":        "&a****&e禁用/启用 在世界内的损坏&a****",
+	"command_help_use":           "&a****&e禁用/启用 物品在世界内的使用&a****",
+	"command_help_useblock":      "&a****&e禁用/启用 方块在世界内的使用&a****",
+	"command_help_itemmode":      "&a****&e在世界内用白名单 或 黑名单去使用物品&a****",
+	"command_help_useblockmode":  "&a****&e在世界内用白名单 或 黑名单去使用方块&a****",
+
+	"command_help_reload":        "&a****&e重载设置&a****",
+
+	"command_help_lastline":      "&a*******************************************************",
+	"usage": "使用",
+	"author": "作者",
+	"website": "网站"
+}

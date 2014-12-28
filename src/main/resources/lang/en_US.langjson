@@ -1,0 +1,26 @@
+﻿{
+	"use_failed":        "&a[&1WorldProtect&a]&eYou don't have use&a[&c${replace1}&a]&e permission in &2${replace2}&e,please advisory to administrators.",
+	"break_failed":      "&a[&1WorldProtect&a]&eYou don't have break&a[&c${replace1}&a]&e permission in &2${replace2}&e,please advisory to administrators.",
+	"build_failed":      "&a[&1WorldProtect&a]&eYou don't have build permission in &2${replace1}&e,please advisory to administrators.",
+	"command_per":       "&a[&1WorldProtect&a]&eYou don't have command permission.",
+	"reload_ok":         "&a[&1WorldProtect&a]&eReload successful!",
+	"command_none":      "&a[&1WorldProtect&a]&ePlease use &2/WorldProtect help&e to view help.",
+	"command_help_firstline":     "&a*****************[&1World Protect System]****************",
+	"command_help_addworld":      "&a****&eAdd a world to protect list&a****",
+	"command_help_additem":       "&a****&eAdd a item \n to item protect list in world&a****",
+	"command_help_adduseblock":   "&a****&eAdd a used \n block to use block protect list in world&a****",
+
+	"command_help_build":         "&a****&eDisable/Enable build in world&a****",
+	"command_help_damage":        "&a****&eDisable/Enable damage in world&a****",
+	"command_help_use":           "&a****&eDisable/Enable use with list in world&a****",
+	"command_help_useblock":      "&a****&eDisable/Enable use block with list in world&a****",
+	"command_help_itemmode":      "&a****&eUse item with whitelist or blacklist in world&a****",
+	"command_help_useblockmode":  "&a****&eUse block with whitelist or blacklist in world&a****",
+
+	"command_help_reload":        "&a****&eReload configuration&a****",
+
+	"command_help_lastline":      "&a*******************************************************",
+	"usage": "Usage"
+	"author": "Author",
+	"website": "Website"
+}
