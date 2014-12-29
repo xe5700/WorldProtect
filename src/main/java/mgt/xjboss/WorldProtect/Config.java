@@ -179,7 +179,7 @@ public class Config {
 	}
 	public boolean CheckWorld(String WorldName){
 		int count=0;
-		int max=WorldName.length();
+		int max=WorldsName.length;
 		for(count=0;count<max-1;count++){
 			if(WorldsName[count]==WorldName)return true;
 		}
@@ -187,7 +187,7 @@ public class Config {
 	}
 	public boolean CheckWorld(String WorldName,int worldID){
 		int count=0;
-		int max=WorldName.length();
+		int max=WorldsName.length;
 		for(count=0;count<max-1;count++){
 			if(WorldsName[count]==WorldName){
 				worldID=count;
