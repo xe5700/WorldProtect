@@ -9,3 +9,8 @@
 *.jar
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+bin/plugin.yml
+bin/lang/en_US.langjson
+bin/lang/zh_CN.langjson
+bin/plugin.yml
+bin/plugin.yml.bak
