@@ -120,7 +120,7 @@ public class Config {
 
 	}
 	public void LoadLanguage(String language){
-		InputStream langf=this.getClass().getResourceAsStream("/lang/"+language+".langjson");
+		InputStream langf=this.getClass().getResourceAsStream("lang/"+language+".langjson");
 		BufferedReader langr=new BufferedReader(new InputStreamReader(langf));
 		String jsonI=null;
 		try {

@@ -24,12 +24,15 @@ public class Main extends JavaPlugin {
 			if ((sender instanceof Player)) {
 				Player P=(Player)sender;
 				if(args.length==1){
+					if(!P.hasPermission("WorldProtect.admin")&
+							!P.hasPermission("WorldProtect.*")&
+							!P.isOp()){
+						P.sendMessage(config.L("command_per"));
+						return true;
+					}
 					if(args[0].equals("help")){
-						if(!P.hasPermission("WorldProtect.admin")&
-								!P.hasPermission("WorldProtect.*")&
-								!P.isOp())
-							return false;
 						P.sendMessage(config.L("command_help_firstline"));
+						P.sendMessage(ChatColor.DARK_GREEN+"/WorldProtect getU <world>"                  +config.L("command_help_getU")    );
 						P.sendMessage(ChatColor.DARK_GREEN+"/WorldProtect addworld <world>"                  +config.L("command_help_addworld")    );
 						P.sendMessage(ChatColor.DARK_GREEN+"/WorldProtect additem <world> <itemname>"        +config.L("command_help_additem")     );
 						P.sendMessage(ChatColor.DARK_GREEN+"/WorldProtect adduseblock <world> <world:subid>" +config.L("command_help_adduseblock") );
@@ -42,15 +45,22 @@ public class Main extends JavaPlugin {
 						P.sendMessage(ChatColor.DARK_GREEN+"/WorldProtect useblockmode w/b"                  +config.L("command_help_addworld")    );
 						P.sendMessage(ChatColor.DARK_GREEN+"/WorldProtect reload "                           +config.L("command_help_reload")    );
 						P.sendMessage("");
-						P.sendMessage(ChatColor.GREEN+config.L("author")+":"+ChatColor.YELLOW+"xjboss "
-						+ChatColor.GREEN+config.L("website")+ChatColor.YELLOW+":xjboss.net");
+						P.sendMessage(ChatColor.GREEN+config.L("author")+":"+ChatColor.YELLOW+"xjboss ");
 						P.sendMessage("");
 						P.sendMessage(config.L("command_help_lastline"));
 						
 					}
 					if(args[0].equals("reload")){
 						config.LoadConf();
+						P.sendMessage(config.L("reload_ok"));
 					}
+					if(args[0].equals("getU")){
+						if(args.length==2){
+							return true;
+						}
+						P.sendMessage(P.getWorld().getUID().toString());
+					}
+					return true;
 				}
 				
 			}else{

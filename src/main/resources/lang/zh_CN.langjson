@@ -6,6 +6,7 @@
 	"reload_ok":         "&a[&1WorldProtect&a]&e重载成功!",
 	"command_none":      "&a[&1WorldProtect&a]&e请使用 &2/WorldProtect help &e去查看帮助.",
 	"command_help_firstline":     "&a*****************&c[&1世界保护系统]****************",
+	"command_help_getU":          "&a****&e获得一个世界的UUID&a****",
 	"command_help_addworld":      "&a****&e添加一个世界到保护列表&a****",
 	"command_help_additem":       "&a****&e在世界内\n添加一个物品到物品保护列表&a****",
 	"command_help_adduseblock":   "&a****&e在世界内\n添加一个方块到方块使用保护列表&a****",
