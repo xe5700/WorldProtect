@@ -2,3 +2,7 @@ name: WorldProtect
 version: 0.0.1
 main: mgt.xjboss.WorldProtect.Main
 author: xjboss
+commands:
+  WorldProtect:
+    description: Use WorldProtect command.
+    usage: /WorldProtect help

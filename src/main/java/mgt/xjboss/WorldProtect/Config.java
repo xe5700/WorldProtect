@@ -23,13 +23,11 @@ public class Config {
 	Boolean Limit_use[];
 	Boolean Limit_useblock[];
 	Boolean Forbid_break[];
-	Boolean Forbid_damged[];
 	Boolean Back_Floor[];
 	Boolean bantype[];
 	Boolean Golbal_Limit_use;
 	Boolean Golbal_Limit_useblock;
 	Boolean Golbal_Forbid_break;
-	Boolean Golbal_Forbid_damged;
 	Boolean Golbal_Back_Floor;
 	String PM="mgt.xjboss.WorldProtect";
 	JSONObject langinfo=null;
@@ -121,14 +119,14 @@ public class Config {
 
 	}
 	public void LoadLanguage(String language){
-		InputStream langf=this.getClass().getResourceAsStream("lang/"+language+".langjson");
+		InputStream langf=this.getClass().getResourceAsStream("/lang/"+language+".langjson");
 		BufferedReader langr=new BufferedReader(new InputStreamReader(langf,Charset.forName("utf-8")));
-		String jsonI=null;
+		String jsonI="";
 		
 		try {
 			while(true){
 				String I=langr.readLine();
-				if(!I.isEmpty()){
+				if(I!=null){
 				jsonI=jsonI+I;
 				}else{
 					break;
@@ -137,11 +135,20 @@ public class Config {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}
-		if(jsonI==null){
-			LoadLanguage("en_US");
-			return;
+		try {
+			langr.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			langf.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		langinfo=(JSONObject)(JSONValue.parse(jsonI));
+		System.out.println(langinfo.toString());
 	}
 	public void LoadItemwhitelist(JSONArray JItems,int wc){
 		int Isize=JItems.size();
@@ -167,9 +174,8 @@ public class Config {
 			JSONArray JItems =(JSONArray)(JWSETW.get("Itemwhitelist"));
 			LoadItemwhitelist(JItems,wc);
 			ReadWorldSet(JWSETW,"Limit_use",Limit_use,wc);
-			ReadWorldSet(JWSETW,"Limit_useblock",Forbid_damged,wc);
+			ReadWorldSet(JWSETW,"Limit_useblock",Limit_useblock,wc);
 			ReadWorldSet(JWSETW,"Forbid_break",Forbid_break,wc);
-			ReadWorldSet(JWSETW,"Forbid_damged",Forbid_damged,wc);
 
 			
 		}
@@ -178,28 +184,29 @@ public class Config {
 	public void ReadWorldSet(JSONObject JS,String name,Boolean BLE[],int count){
 		BLE[count]=(Boolean)(JS.get(name));
 	}
-	public boolean CheckWorld(String WorldName){
+	public boolean CheckWorld(String worldUUID){
 		int count=0;
 		int max=WorldsName.length;
 		for(count=0;count<max-1;count++){
-			if(WorldsName[count]==WorldName)return true;
+			if(WorldsName[count]==worldUUID)return true;
 		}
 		return false;
 	}
-	public boolean CheckWorld(String WorldName,int worldID){
+	public boolean CheckWorld(String worldUUID,int worldID){
 		int count=0;
 		int max=WorldsName.length;
 		for(count=0;count<max-1;count++){
-			if(WorldsName[count]==WorldName){
+			if(WorldsName[count]==worldUUID){
 				worldID=count;
 				return true;
 			}
 		}
+		worldID=-1;
 		return false;
 	}
-	public boolean CheckItem(String WorldName,String ItemName){
+	public boolean CheckItem(String worldUUID,String ItemName){
 		int worldID=0;
-		boolean WCheck=CheckWorld(WorldName,worldID);
+		boolean WCheck=CheckWorld(worldUUID,worldID);
 		if(WCheck){
 			int count=0;
 			int max=WorldsItem[worldID].length;
@@ -207,11 +214,12 @@ public class Config {
 				if(WorldsItem[worldID][count]==ItemName)return true;
 			}
 		}
+		worldID=-1;
 		return false;
 	}
-	public boolean CheckItem(String WorldName,String ItemName,int WID){
+	public boolean CheckItem(String worldUUID,String ItemName,int WID){
 		int worldID=0;
-		boolean WCheck=CheckWorld(WorldName,worldID);
+		boolean WCheck=CheckWorld(worldUUID,worldID);
 		if(WCheck){
 			WID=worldID;
 			int count=0;
@@ -222,9 +230,9 @@ public class Config {
 		}
 		return false;
 	}
-	public boolean CheckBlock(String WorldName,String BlockName,int WID){
+	public boolean CheckBlock(String worldUUID,String BlockName,int WID){
 		int worldID=0;
-		boolean WCheck=CheckWorld(WorldName,worldID);
+		boolean WCheck=CheckWorld(worldUUID,worldID);
 		if(WCheck){
 			WID=worldID;
 			int count=0;
@@ -232,37 +240,26 @@ public class Config {
 			for(count=0;count<max-1;count++){
 				if(WorldsBlock[worldID][count]==BlockName)return true;
 			}
+			return false;
 		}
-		return false;
+		return true;
 	}
 	public String L(String readinfo){
 		String text= ((String)(langinfo.get(readinfo)));
-		text.replaceAll("&4", ChatColor.DARK_RED.toString());
-		text.replaceAll("&c", ChatColor.RED.toString());
-		text.replaceAll("&6", ChatColor.GOLD.toString());
-		text.replaceAll("&a", ChatColor.GREEN.toString());
-		text.replaceAll("&2", ChatColor.DARK_GREEN.toString());
-		text.replaceAll("&b", ChatColor.AQUA.toString());
-		text.replaceAll("&3", ChatColor.DARK_AQUA.toString());
-		text.replaceAll("&1", ChatColor.DARK_BLUE.toString());
-		text.replaceAll("&9", ChatColor.BLUE.toString());
-		text.replaceAll("&d", ChatColor.LIGHT_PURPLE.toString());
-		text.replaceAll("&5", ChatColor.DARK_PURPLE.toString());
-		text.replaceAll("&f", ChatColor.WHITE.toString());
-		text.replaceAll("&7", ChatColor.GRAY.toString());
-		text.replaceAll("&8", ChatColor.DARK_GRAY.toString());
-		text.replaceAll("&0", ChatColor.BLACK.toString());
-		if(!text.isEmpty()){
+        text=text.replace("&", "¡ì");
 			return text;
-		}
-		return "";
 	}
 	public String L(String readinfo,String replacedinfo){
 		String text=L(readinfo);
 		if(text.isEmpty()){
 			return "";
 		}
-		text.replaceAll("${replace1}", replacedinfo);
+		while(true){
+			String T=text;
+			text=text.replace("${replace1}", replacedinfo);
+			if(T==text)break;
+		}
+
 		return text;
 	}
 	public String L(String readinfo,String replacedinfo[]){
@@ -270,8 +267,12 @@ public class Config {
 		if(text.isEmpty()){
 			return "";
 		}
-		for(int i=0;i<replacedinfo.length+1;i++){
-			text.replaceAll("${replace"+(i+1)+"}", replacedinfo[i]);
+		while(true){
+			String T=text;
+			for(int i=0;i<replacedinfo.length+1;i++){
+				text=text.replace("${replace"+(i+1)+"}", replacedinfo[i]);
+			}
+			if(T==text)break;
 		}
 		
 		

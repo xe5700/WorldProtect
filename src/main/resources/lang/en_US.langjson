@@ -1,15 +1,17 @@
-﻿{
-	"use_failed":        "&a[&1WorldProtect&a]&eYou don't have use&a[&c${replace1}&a]&e permission in &2${replace2}&e,please advisory to administrators.",
-	"break_failed":      "&a[&1WorldProtect&a]&eYou don't have break&a[&c${replace1}&a]&e permission in &2${replace2}&e,please advisory to administrators.",
-	"build_failed":      "&a[&1WorldProtect&a]&eYou don't have build permission in &2${replace1}&e,please advisory to administrators.",
-	"command_per":       "&a[&1WorldProtect&a]&eYou don't have command permission.",
-	"reload_ok":         "&a[&1WorldProtect&a]&eReload successful!",
-	"command_none":      "&a[&1WorldProtect&a]&ePlease use &2/WorldProtect help&e to view help.",
-	"command_help_firstline":     "&a*****************[&1World Protect System]****************",
+{
+	"use_failed":        "&a[&cWorldProtect&a]&eYou don't have use&a[&c${replace1}&a]&e permission in &2${replace2}&e,please advisory to administrators.",
+	"break_failed":      "&a[&cWorldProtect&a]&eYou don't have break&a[&c${replace1}&a]&e permission in &2${replace2}&e,please advisory to administrators.",
+	"build_failed":      "&a[&cWorldProtect&a]&eYou don't have build permission in &2${replace1}&e,please advisory to administrators.",
+	"command_per":       "&a[&cWorldProtect&a]&eYou don't have command permission.",
+	"worldcheck_failed": "&a[&cWorldProtect&a]&eWorld &2${replace1}&e is not exist!",
+	"reload_ok":         "&a[&cWorldProtect&a]&eReload successful!",
+	"command_none":      "&a[&cWorldProtect&a]&ePlease use &2/WorldProtect help&e to view help.",
+	"command_help_firstline":     "&a*****************[&cWorld Protect System&a]****************",
 	"command_help_getU":          "&a****&eGet a world's UUID&a****",
+	"command_help_PI":            "&a****&eGet a world's protect information &a****",
 	"command_help_addworld":      "&a****&eAdd a world to protect list&a****",
-	"command_help_additem":       "&a****&eAdd a item \n to item protect list in world&a****",
-	"command_help_adduseblock":   "&a****&eAdd a used \n block to use block protect list in world&a****",
+	"command_help_additem":       "&a****&eAdd a item to item protect list in world&a****",
+	"command_help_adduseblock":   "&a****&eAdd a used block to use block protect list in world&a****",
 
 	"command_help_build":         "&a****&eDisable/Enable build in world&a****",
 	"command_help_damage":        "&a****&eDisable/Enable damage in world&a****",
@@ -21,7 +23,18 @@
 	"command_help_reload":        "&a****&eReload configuration&a****",
 
 	"command_help_lastline":      "&a*******************************************************",
-	"usage": "Usage"
+	"usage": "Usage",
 	"author": "Author",
-	"website": "Website"
+	"website": "Website",
+	"Items": "Items",
+	"list": "list",
+	"Block": "Block",
+	"Blacklist": "Blacklist",
+	"Whitelist": "Whitelist",
+	"Limit_use": "limit_use",
+	"Limit_useblock": "limit_useblock",
+	"Forbid_break": "Forbid_break",
+	"Enabled": "Enabled",
+	"Disabled": "Disabled"
+	
 }

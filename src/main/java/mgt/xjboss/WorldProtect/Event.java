@@ -48,7 +48,7 @@ public class Event implements Listener {
 			String S=String.valueOf(event.getPlayer().getItemInHand().getData().getData());
 			String itemname=I+":"+S;
 			int worldID=0;
-			if(!Config.CheckItem(worldname, itemname,worldID)){
+			if(Config.CheckItem(worldname, itemname,worldID)){
 				
 				if(!Config.Limit_use[worldID])return;
 				if(event.getPlayer().isOp())return;
@@ -71,7 +71,7 @@ public class Event implements Listener {
 			String blockname=I+":"+S;
 			int worldID=0;
 			if(!Config.CheckItem(worldname, blockname,worldID)){
-				if(!Config.Limit_use[worldID])return;
+				if(Config.Limit_useblock[worldID])return;
 				if(event.getPlayer().isOp())return;
 				if(event.getPlayer().hasPermission(Config.PM+".*"))return;
 				if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.*"))return;
@@ -91,7 +91,7 @@ public class Event implements Listener {
 		String blockname=I+":"+S;
 		int worldID=0;
 		if(!Config.CheckWorld(worldname,worldID)){
-			if(!Config.Forbid_damged[worldID])return;
+			if(!Config.Forbid_break[worldID])return;
 			if(event.getPlayer().isOp())return;
 			if(event.getPlayer().hasPermission(Config.PM+".*"))return;
 			if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.*"))return;
