@@ -1,4 +1,6 @@
 package mgt.xjboss.WorldProtect;
+import java.util.UUID;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -21,8 +23,11 @@ public class Event implements Listener {
 	}
 	@EventHandler
 	public void BreakEvent(BlockBreakEvent event){
-		String worldname=event.getBlock().getWorld().getName();
-		String blockname=event.getBlock().getType().name()+":"+event.getBlock().getData();
+		UUID worldUUID=event.getBlock().getWorld().getUID();
+		String worldname=worldUUID.toString();
+		String I=event.getBlock().getType().name();
+		String S=String.valueOf(event.getBlock().getData());
+		String blockname=I+":"+S;
 		int worldID=0;
 		if(Config.CheckWorld(worldname,worldID)){
 			if(Config.Forbid_break[worldID].booleanValue()==false)return;
@@ -37,8 +42,11 @@ public class Event implements Listener {
 	public void UseEvent(PlayerInteractEvent event){
 		
 		if ((event.getAction()==Action.RIGHT_CLICK_AIR)|(event.getAction()==Action.RIGHT_CLICK_BLOCK)){
-			String worldname=event.getPlayer().getWorld().getName();
-			String itemname=event.getPlayer().getItemInHand().getType().name()+":"+event.getPlayer().getItemInHand().getData().getData();
+			UUID worldUUID=event.getPlayer().getWorld().getUID();
+			String worldname=worldUUID.toString();
+			String I=event.getPlayer().getItemInHand().getType().name();
+			String S=String.valueOf(event.getPlayer().getItemInHand().getData().getData());
+			String itemname=I+":"+S;
 			int worldID=0;
 			if(!Config.CheckItem(worldname, itemname,worldID)){
 				
@@ -56,8 +64,11 @@ public class Event implements Listener {
 	public void UsedBlockEvent(PlayerInteractEvent event){
 		
 		if ((event.getAction()==Action.RIGHT_CLICK_AIR)|(event.getAction()==Action.RIGHT_CLICK_BLOCK)){
-			String worldname=event.getPlayer().getWorld().getName();
-			String blockname=event.getClickedBlock().getType().name()+":"+event.getClickedBlock().getData();
+			UUID worldUUID=event.getPlayer().getWorld().getUID();
+			String worldname=worldUUID.toString();
+			String I=event.getClickedBlock().getType().name();
+			String S=String.valueOf(event.getClickedBlock().getData());
+			String blockname=I+":"+S;
 			int worldID=0;
 			if(!Config.CheckItem(worldname, blockname,worldID)){
 				if(!Config.Limit_use[worldID])return;
@@ -73,8 +84,11 @@ public class Event implements Listener {
 			}
 		}
 	public void DamageEvent(BlockDamageEvent event){
-		String worldname =event.getBlock().getWorld().getName();
-		String blockname=event.getBlock().getType().name()+":"+event.getBlock().getData();
+		UUID worldUUID=event.getBlock().getWorld().getUID();
+		String worldname=worldUUID.toString();
+		String I=event.getBlock().getType().name();
+		String S=String.valueOf(event.getBlock().getData());
+		String blockname=I+":"+S;
 		int worldID=0;
 		if(!Config.CheckWorld(worldname,worldID)){
 			if(!Config.Forbid_damged[worldID])return;
