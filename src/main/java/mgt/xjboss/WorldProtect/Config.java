@@ -148,14 +148,15 @@ public class Config {
 			e.printStackTrace();
 		}
 		langinfo=(JSONObject)(JSONValue.parse(jsonI));
-		System.out.println(langinfo.toString());
+		//System.out.println(langinfo.toString());
 	}
 	public void LoadItemwhitelist(JSONArray JItems,int wc){
 		int Isize=JItems.size();
 		int Icount=0;
 		WorldsItem[wc]=new String[Isize];
-		for(Icount=0;Icount<Isize-1;Icount++){
-			WorldsItem[wc][Icount]=JItems.get(Icount).toString();
+		for(Icount=0;Icount<Isize;Icount++){
+			WorldsItem[wc][Icount]=(String)(JItems.get(Icount));
+			System.out.println(WorldsItem[wc][Icount]);
 		}
 	}
 	public void LoadWorldlist(){
@@ -167,12 +168,15 @@ public class Config {
 		WorldsName=new String[ws];
 		WorldsItem=new String[ws][];
 		LoadLanguage((String)confj.get("Language"));
-		for(wc=0;wc<ws-1;wc++){
+		for(wc=0;wc<ws;wc++){
 			System.out.println(wc);
 			WorldsName[wc]=Jworlds.get(wc).toString();
 			JSONObject JWSETW=(JSONObject)JWSET.get(WorldsName[wc]);
 			JSONArray JItems =(JSONArray)(JWSETW.get("Itemwhitelist"));
 			LoadItemwhitelist(JItems,wc);
+			Limit_use=new Boolean[ws];
+			Limit_useblock=new Boolean[ws];
+			Forbid_break=new Boolean[ws];
 			ReadWorldSet(JWSETW,"Limit_use",Limit_use,wc);
 			ReadWorldSet(JWSETW,"Limit_useblock",Limit_useblock,wc);
 			ReadWorldSet(JWSETW,"Forbid_break",Forbid_break,wc);
@@ -187,16 +191,16 @@ public class Config {
 	public boolean CheckWorld(String worldUUID){
 		int count=0;
 		int max=WorldsName.length;
-		for(count=0;count<max-1;count++){
-			if(WorldsName[count]==worldUUID)return true;
+		for(count=0;count<max;count++){
+			if(WorldsName[count].equals(worldUUID))return true;
 		}
 		return false;
 	}
 	public boolean CheckWorld(String worldUUID,int worldID){
 		int count=0;
 		int max=WorldsName.length;
-		for(count=0;count<max-1;count++){
-			if(WorldsName[count]==worldUUID){
+		for(count=0;count<max;count++){
+			if(WorldsName[count].equals(worldUUID)){
 				worldID=count;
 				return true;
 			}
@@ -210,12 +214,15 @@ public class Config {
 		if(WCheck){
 			int count=0;
 			int max=WorldsItem[worldID].length;
-			for(count=0;count<max-1;count++){
-				if(WorldsItem[worldID][count]==ItemName)return true;
+			for(count=0;count<max;count++){
+				if(WorldsItem[worldID][count].equals(ItemName)|
+						WorldsItem[worldID][count].equals(ItemName.split(":")[0]))
+					return true;
 			}
+			return false;
 		}
 		worldID=-1;
-		return false;
+		return true;
 	}
 	public boolean CheckItem(String worldUUID,String ItemName,int WID){
 		int worldID=0;
@@ -224,11 +231,15 @@ public class Config {
 			WID=worldID;
 			int count=0;
 			int max=WorldsItem[worldID].length;
-			for(count=0;count<max-1;count++){
-				if(WorldsItem[worldID][count]==ItemName)return true;
+			for(count=0;count<max;count++){
+				if(WorldsItem[worldID][count].equals(ItemName)|
+						WorldsItem[worldID][count].equals(ItemName.split(":")[0]))
+					return true;
 			}
+			return false;
 		}
-		return false;
+		worldID=-1;
+		return true;
 	}
 	public boolean CheckBlock(String worldUUID,String BlockName,int WID){
 		int worldID=0;
@@ -237,16 +248,37 @@ public class Config {
 			WID=worldID;
 			int count=0;
 			int max=WorldsBlock[worldID].length;
-			for(count=0;count<max-1;count++){
-				if(WorldsBlock[worldID][count]==BlockName)return true;
+			for(count=0;count<max;count++){
+				if(WorldsBlock[worldID][count].equals(BlockName)|
+						WorldsBlock[worldID][count].equals(BlockName.split(":")[0]))return true;
 			}
 			return false;
 		}
+		worldID=-1;
 		return true;
 	}
 	public String L(String readinfo){
 		String text= ((String)(langinfo.get(readinfo)));
-        text=text.replace("&", "¡ì");
+		while(true){
+		String T=text;
+		text=text.replace("&4", ChatColor.DARK_RED.toString());
+		text=text.replace("&c", ChatColor.RED.toString());
+		text=text.replace("&6", ChatColor.GOLD.toString());
+		text=text.replace("&a", ChatColor.GREEN.toString());
+		text=text.replace("&e", ChatColor.YELLOW.toString());
+		text=text.replace("&2", ChatColor.DARK_GREEN.toString());
+		text=text.replace("&b", ChatColor.AQUA.toString());
+		text=text.replace("&3", ChatColor.DARK_AQUA.toString());
+		text=text.replace("&1", ChatColor.DARK_BLUE.toString());
+		text=text.replace("&9", ChatColor.BLUE.toString());
+		text=text.replace("&d", ChatColor.LIGHT_PURPLE.toString());
+		text=text.replace("&5", ChatColor.DARK_PURPLE.toString());
+		text=text.replace("&f", ChatColor.WHITE.toString());
+		text=text.replace("&7", ChatColor.GRAY.toString());
+		text=text.replace("&8", ChatColor.DARK_GRAY.toString());
+		text=text.replace("&0", ChatColor.BLACK.toString());
+		if(T==text)break;
+		}
 			return text;
 	}
 	public String L(String readinfo,String replacedinfo){
@@ -269,7 +301,7 @@ public class Config {
 		}
 		while(true){
 			String T=text;
-			for(int i=0;i<replacedinfo.length+1;i++){
+			for(int i=0;i<replacedinfo.length;i++){
 				text=text.replace("${replace"+(i+1)+"}", replacedinfo[i]);
 			}
 			if(T==text)break;

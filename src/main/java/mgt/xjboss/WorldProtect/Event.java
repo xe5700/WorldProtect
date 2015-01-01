@@ -48,16 +48,16 @@ public class Event implements Listener {
 			String S=String.valueOf(event.getPlayer().getItemInHand().getData().getData());
 			String itemname=I+":"+S;
 			int worldID=0;
-			if(Config.CheckItem(worldname, itemname,worldID)){
+			if(!Config.CheckItem(worldname, itemname,worldID)){
 				
-				if(!Config.Limit_use[worldID])return;
+				if(!Config.Limit_use[worldID].booleanValue()	)return;
 				if(event.getPlayer().isOp())return;
 				if(event.getPlayer().hasPermission(Config.PM+".*"))return;
 				if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.use.*"))return;
 				if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.use."+itemname))return;
 				if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.use."+itemname.split(":")[0]))return;
 				event.setCancelled(true);
-				event.getPlayer().sendMessage(Config.L("use_failed",new String[]{itemname,worldname}));
+				event.getPlayer().sendMessage(Config.L("use_failed",new String[]{itemname,event.getPlayer().getWorld().getName()}));
 			}
 			}
 		}
@@ -70,8 +70,8 @@ public class Event implements Listener {
 			String S=String.valueOf(event.getClickedBlock().getData());
 			String blockname=I+":"+S;
 			int worldID=0;
-			if(!Config.CheckItem(worldname, blockname,worldID)){
-				if(Config.Limit_useblock[worldID])return;
+			if(!Config.CheckBlock(worldname, blockname,worldID)){
+				if(!Config.Limit_useblock[worldID].booleanValue())return;
 				if(event.getPlayer().isOp())return;
 				if(event.getPlayer().hasPermission(Config.PM+".*"))return;
 				if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.*"))return;
@@ -79,7 +79,7 @@ public class Event implements Listener {
 				if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.usedblock."+blockname))return;
 				if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.usedblock."+blockname.split(":")[0]))return;
 				event.setCancelled(true);
-				event.getPlayer().sendMessage(Config.L("use_failed",new String[]{blockname,worldname}));
+				event.getPlayer().sendMessage(Config.L("use_failed",new String[]{blockname,event.getPlayer().getWorld().getName()}));
 			}
 			}
 		}
@@ -90,15 +90,15 @@ public class Event implements Listener {
 		String S=String.valueOf(event.getBlock().getData());
 		String blockname=I+":"+S;
 		int worldID=0;
-		if(!Config.CheckWorld(worldname,worldID)){
-			if(!Config.Forbid_break[worldID])return;
+		if(Config.CheckWorld(worldname,worldID)){
+			if(!Config.Forbid_break[worldID].booleanValue())return;
 			if(event.getPlayer().isOp())return;
 			if(event.getPlayer().hasPermission(Config.PM+".*"))return;
 			if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.*"))return;
 			if(event.getPlayer().hasPermission(Config.PM+"."+worldname+".allow.damage"))return;
 		
 			event.setCancelled(true);
-			event.getPlayer().sendMessage(Config.L("break_failed",new String[]{blockname,worldname}));
+			event.getPlayer().sendMessage(Config.L("break_failed",new String[]{blockname,event.getBlock().getWorld().getName()}));
 		}
 	}
 	

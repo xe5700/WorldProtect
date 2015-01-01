@@ -60,7 +60,7 @@ public class Main extends JavaPlugin {
 						P.sendMessage(ChatColor.DARK_GREEN+"/WorldProtect useblockmode w/b <world>"			);
 						P.sendMessage(config.L("command_help_addworld")    );
 						P.sendMessage(ChatColor.DARK_GREEN+"/WorldProtect reload"								);
-						P.sendMessage(config.L("command_help_reload")    );
+						P.sendMessage(config.L("command_help_reload")    );	
 						P.sendMessage("");
 						P.sendMessage(ChatColor.GREEN+config.L("author")+":"+ChatColor.YELLOW+"xjboss ");
 						P.sendMessage("");
