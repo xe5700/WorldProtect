@@ -11,6 +11,7 @@
 	"command_help_PI":            "&a****&eGet a world's protect information &a****",
 	"command_help_addworld":      "&a****&eAdd a world to protect list&a****",
 	"command_help_additem":       "&a****&eAdd a item to item protect list in world&a****",
+	"command_help_addallitem":    "&a****&eAdd a item with all sub id to item protect list in world&a****",
 	"command_help_adduseblock":   "&a****&eAdd a used block to use block protect list in world&a****",
 
 	"command_help_build":         "&a****&eDisable/Enable build in world&a****",

@@ -36,6 +36,9 @@ public class Config {
 	Config(Main plugin233){
 		plugin=plugin233;
 	}
+	public void SaveConf(){
+		
+	}
 	public void LoadConf(){
 		File config_file= new File(plugin.getDataFolder(), "config.json");
 		if(!config_file.exists()){
@@ -58,7 +61,7 @@ public class Config {
 			JSONObject testworld=new JSONObject();
 			JSONArray Jitemwhitelist=new JSONArray();
 			JSONArray UsedBlockwhitelist=new JSONArray();
-			Jitemwhitelist.add(new String("AIR:*"));
+			Jitemwhitelist.add(new String("AIR"));
 			UsedBlockwhitelist.add(new String("SIGN"));
 			UsedBlockwhitelist.add(new String("STONE_BUTTON"));
 			UsedBlockwhitelist.add(new String("WOODEN_BUTTON"));
@@ -92,7 +95,6 @@ public class Config {
 		}else{
 			FileInputStream inputfile=null;
 			
-			String inputinfo=null;
 			try{
 				inputfile=new FileInputStream(config_file);
 			}catch(FileNotFoundException e){
@@ -156,7 +158,14 @@ public class Config {
 		WorldsItem[wc]=new String[Isize];
 		for(Icount=0;Icount<Isize;Icount++){
 			WorldsItem[wc][Icount]=(String)(JItems.get(Icount));
-			System.out.println(WorldsItem[wc][Icount]);
+		}
+	}
+	public void LoadBlockwhitelist(JSONArray JBlocks,int wc){
+		int Isize=JBlocks.size();
+		int Icount=0;
+		WorldsBlock[wc]=new String[Isize];
+		for(Icount=0;Icount<Isize;Icount++){
+			WorldsBlock[wc][Icount]=(String)(JBlocks.get(Icount));
 		}
 	}
 	public void LoadWorldlist(){
@@ -167,13 +176,16 @@ public class Config {
 		int wc=0;
 		WorldsName=new String[ws];
 		WorldsItem=new String[ws][];
+		WorldsBlock=new String[ws][];
 		LoadLanguage((String)confj.get("Language"));
 		for(wc=0;wc<ws;wc++){
 			System.out.println(wc);
 			WorldsName[wc]=Jworlds.get(wc).toString();
 			JSONObject JWSETW=(JSONObject)JWSET.get(WorldsName[wc]);
 			JSONArray JItems =(JSONArray)(JWSETW.get("Itemwhitelist"));
+			JSONArray JBlocks =(JSONArray)(JWSETW.get("UsedBlockwhitelist"));
 			LoadItemwhitelist(JItems,wc);
+			LoadBlockwhitelist(JBlocks,wc);	
 			Limit_use=new Boolean[ws];
 			Limit_useblock=new Boolean[ws];
 			Forbid_break=new Boolean[ws];
@@ -249,8 +261,8 @@ public class Config {
 			int count=0;
 			int max=WorldsBlock[worldID].length;
 			for(count=0;count<max;count++){
-				if(WorldsBlock[worldID][count].equals(BlockName)|
-						WorldsBlock[worldID][count].equals(BlockName.split(":")[0]))return true;
+				if((WorldsBlock[worldID][count].equals(BlockName))|
+						(WorldsBlock[worldID][count].equals(BlockName.split(":")[0])))return true;
 			}
 			return false;
 		}

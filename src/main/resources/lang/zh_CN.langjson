@@ -11,6 +11,7 @@
 	"command_help_PI":            "&a****&e获得一个世界的保护信息&a****",
 	"command_help_addworld":      "&a****&e添加一个世界到保护列表&a****",
 	"command_help_additem":       "&a****&e在世界内添加一个物品到物品保护列表&a****",
+	"command_help_addallitem":    "&a****&e在世界内添加一个物品的所有子ID到保护列表&a****",
 	"command_help_adduseblock":   "&a****&e在世界内添加一个方块到方块使用保护列表&a****",
 
 	"command_help_build":         "&a****&e禁用/启用 在世界内的建筑&a****",

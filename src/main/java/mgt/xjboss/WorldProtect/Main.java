@@ -67,6 +67,10 @@ public class Main extends JavaPlugin {
 						P.sendMessage(config.L("command_help_lastline"));
 						
 					}
+					if(args[0].equals("additem")){
+ 
+						P.sendMessage(config.L("command_help_additem"));
+					}
 					if(args[0].equals("reload")){
 						config.LoadConf();
 						P.sendMessage(config.L("reload_ok"));
@@ -99,15 +103,15 @@ public class Main extends JavaPlugin {
 							P.sendMessage(config.L("Limit_use")+":"+config.Limit_use[WID].toString()+","+
 									config.L("Limit_useblock")+":"+config.Limit_useblock[WID].toString()+","+
 									config.L("Forbid_break")+":"+config.Forbid_break[WID].toString());
-							int MAXXWI=config.WorldsItem.length;
-							int MAXXWB=config.WorldsBlock.length;
+							int MAXXWI=config.WorldsItem[WID].length;
+							int MAXXWB=config.WorldsBlock[WID].length;
 							String Itemslist_="";
-							for(int C=0;C<MAXXWI-1;MAXXWI++){
+							for(int C=0;C<MAXXWI;MAXXWI++){
 								String IT=config.WorldsItem[WID][C];
 								Itemslist_=Itemslist_+"¡ìf[¡ìc"+IT+"¡ìf]"+"¡ìa,";
 							}
 							String Blockslist_="";
-							for(int C=0;C<MAXXWB-1;MAXXWB++){
+							for(int C=0;C<MAXXWB;MAXXWB++){
 								String IT=config.WorldsBlock[WID][C];
 								Blockslist_=Blockslist_+"¡ìf[¡ìc"+IT+"¡ìf]"+"¡ìa,";
 							}
