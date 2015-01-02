@@ -99,7 +99,7 @@ public class Main extends JavaPlugin {
 							WUUID=P.getWorld().getUID().toString();
 						}
 						if(config.CheckWorld(WUUID,WID)){
-							P.sendMessage("¡ìf[¡ì5"+MCW.getName()+"¡ì5]");
+							P.sendMessage("Â§f[Â§5"+MCW.getName()+"Â§5]");
 							P.sendMessage(config.L("Limit_use")+":"+config.Limit_use[WID].toString()+","+
 									config.L("Limit_useblock")+":"+config.Limit_useblock[WID].toString()+","+
 									config.L("Forbid_break")+":"+config.Forbid_break[WID].toString());
@@ -108,15 +108,15 @@ public class Main extends JavaPlugin {
 							String Itemslist_="";
 							for(int C=0;C<MAXXWI;MAXXWI++){
 								String IT=config.WorldsItem[WID][C];
-								Itemslist_=Itemslist_+"¡ìf[¡ìc"+IT+"¡ìf]"+"¡ìa,";
+								Itemslist_=Itemslist_+"Â§f[Â§c"+IT+"Â§f]"+"Â§a,";
 							}
 							String Blockslist_="";
 							for(int C=0;C<MAXXWB;MAXXWB++){
 								String IT=config.WorldsBlock[WID][C];
-								Blockslist_=Blockslist_+"¡ìf[¡ìc"+IT+"¡ìf]"+"¡ìa,";
+								Blockslist_=Blockslist_+"Â§f[Â§c"+IT+"Â§f]"+"Â§a,";
 							}
-							P.sendMessage("¡ìf[¡ì4"+config.L("Items")+" "+config.L("Whitelist")+"]¡ìf  ("+Itemslist_+")");
-							P.sendMessage("¡ìf[¡ì4"+config.L("Block")+" "+config.L("Whitelist")+"]¡ìf  ("+Blockslist_+")");
+							P.sendMessage("Â§f[Â§4"+config.L("Items")+" "+config.L("Whitelist")+"]Â§f  ("+Itemslist_+")");
+							P.sendMessage("Â§f[Â§4"+config.L("Block")+" "+config.L("Whitelist")+"]Â§f  ("+Blockslist_+")");
 							return true;
 						}else{
 							P.sendMessage(config.L(("worldcheck_failed"),MCW.getName()));
