@@ -106,12 +106,12 @@ public class Main extends JavaPlugin {
 							int MAXXWI=config.WorldsItem[WID].length;
 							int MAXXWB=config.WorldsBlock[WID].length;
 							String Itemslist_="";
-							for(int C=0;C<MAXXWI;MAXXWI++){
+							for(int C=0;C<MAXXWI;C++){
 								String IT=config.WorldsItem[WID][C];
 								Itemslist_=Itemslist_+"§f[§c"+IT+"§f]"+"§a,";
 							}
 							String Blockslist_="";
-							for(int C=0;C<MAXXWB;MAXXWB++){
+							for(int C=0;C<MAXXWB;C++){
 								String IT=config.WorldsBlock[WID][C];
 								Blockslist_=Blockslist_+"§f[§c"+IT+"§f]"+"§a,";
 							}
